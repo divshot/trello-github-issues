@@ -1,0 +1,17 @@
+<h1>Wire Up a Hook</h1>
+
+<form action='/hooks' method='post'>
+  <select name='board_id'>
+    <option selected>Choose a Board</option>
+    <%= optionize(@boards) %>
+  </select>
+  <button type='submit'>Create Hook</button>
+</form>
+
+<h2>Your Hooks</h2>
+
+<ul>
+  <% @hooks.each do |hook| %>
+  <li><a href="/hooks/<%= hook.id %>"><%= hook.board_name %> (<%= hook.id %>)</a></li>
+  <% end %>
+</ul>
