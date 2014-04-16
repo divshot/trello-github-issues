@@ -35,7 +35,7 @@ class App < Sinatra::Base
     def perform(hook, event)
       @hook = hook
       @event = event
-      puts "[hook] received for #{@event['repository']['full_name']}, no trello reference" or return nil unless card_id
+      puts "[hook] received for #{@event['repository']['full_name'] rescue 'unknown repo'}, no trello reference" or return nil unless card_id
       case @event['action']
       when 'closed'
         target = @hook.closed_list_id
