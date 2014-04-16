@@ -14,6 +14,7 @@ class App < Sinatra::Base
     
     def self.all(*ids)
       keys = ids.map{|id| "hook:#{id}"}
+      return [] unless keys.any?
       $redis.mget(*keys).compact.map{|data| new(JSON.parse(data)) }
     end
     
